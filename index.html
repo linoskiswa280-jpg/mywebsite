@@ -1,76 +1,427 @@
-
-<!DOCTYPE html>
+<link rel="stylesheet" href="style.css"><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My First Website</title>
+  <meta name="theme-color" content="#080b14">
+  <meta name="description" content="Discover innovative ideas, digital projects and technology built for the future.">
+  <title>NOVA — Build Beyond Limits</title>
+
   <style>
+    :root {
+      --bg: #080b14;
+      --panel: #101625;
+      --text: #f5f7ff;
+      --muted: #a4adc2;
+      --cyan: #67e8f9;
+      --violet: #a78bfa;
+      --line: rgba(255,255,255,.10);
+    }
+
     * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b1020;
-      color: white;
-      text-align: center;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
     }
 
-    header {
-      padding: 22px;
-      background: #151d33;
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
     }
 
-    main {
-      padding: 70px 20px;
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(8,11,20,.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+
+    .logo span { color: var(--cyan); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+
+    .hero {
+      min-height: 570px;
+      padding: 100px 0 90px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 45px;
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: .78rem;
+      letter-spacing: 3px;
+      font-weight: 800;
+      text-transform: uppercase;
     }
 
     h1 {
-      font-size: 38px;
-      color: #67e8f9;
+      margin: 18px 0;
+      font-size: clamp(2.7rem, 7vw, 5.2rem);
+      line-height: 1.03;
+      letter-spacing: -3px;
     }
 
-    p {
-      color: #cbd5e1;
-      line-height: 1.7;
+    .gradient {
+      background: linear-gradient(100deg, var(--cyan), var(--violet));
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
     }
 
-    a.button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 14px 24px;
-      background: #06b6d4;
-      color: #06111e;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
+    .hero p, .section-intro {
+      color: var(--muted);
+      max-width: 560px;
+      font-size: 1.05rem;
     }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 21px;
+      border-radius: 10px;
+      font-weight: 750;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .primary {
+      background: var(--cyan);
+      color: #071018;
+      box-shadow: 0 8px 35px rgba(103,232,249,.15);
+    }
+
+    .secondary {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+
+    .orb-wrap {
+      display: grid;
+      place-items: center;
+      min-height: 300px;
+    }
+
+    .orb {
+      width: min(290px, 65vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      position: relative;
+      background:
+        radial-gradient(circle at 30% 25%, #b5f8ff, transparent 18%),
+        radial-gradient(circle at 65% 65%, #9b76ff, transparent 35%),
+        radial-gradient(circle at 40% 40%, #173d70, #101020 68%);
+      box-shadow:
+        0 0 70px rgba(103,232,249,.16),
+        inset -18px -20px 45px rgba(0,0,0,.55);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .orb::after {
+      content: "";
+      position: absolute;
+      inset: -18px;
+      border: 1px solid rgba(103,232,249,.35);
+      border-radius: 50%;
+      transform: rotate(-25deg) scaleY(.38);
+    }
+
+    section { padding: 76px 0; }
+
+    .section-heading {
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: -1px;
+      margin: 10px 0;
+    }
+
+    .section-intro { margin-bottom: 35px; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 26px;
+      background: linear-gradient(145deg, #121a2b, #0c101b);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      transition: border-color .25s, transform .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(103,232,249,.5);
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .card h3 { margin: 5px 0 10px; }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .about-box {
+      padding: 35px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background:
+        radial-gradient(ellipse at top right, rgba(167,139,250,.12), transparent 55%),
+        var(--panel);
+    }
+
+    .contact {
+      text-align: center;
+      padding: 55px 25px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(103,232,249,.08), rgba(167,139,250,.08));
+    }
+
+    .contact p { color: var(--muted); }
 
     footer {
-      padding: 25px;
-      color: #94a3b8;
+      margin-top: 65px;
+      border-top: 1px solid var(--line);
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-15px) rotate(5deg); }
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner { min-height: 64px; }
+      .nav-links { gap: 13px; font-size: .82rem; }
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 75px 0 45px;
+        gap: 15px;
+      }
+      h1 { letter-spacing: -2px; }
+      .orb-wrap { min-height: 245px; }
+      .orb { width: 210px; }
+      section { padding: 55px 0; }
+      .cards { grid-template-columns: 1fr; }
+      .card { padding: 23px; }
+      .about-box { padding: 25px; }
+    }
+
+    @media (max-width: 380px) {
+      .nav-links { gap: 9px; font-size: .76rem; }
+      .logo { font-size: 1.1rem; letter-spacing: 2px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <strong>MY WEBSITE</strong>
-  </header>
+  <nav>
+    <div class="container nav-inner">
+      <a class="logo" href="#home">NO<span>V</span>A.</a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
   <main>
-    <h1>Welcome to My World</h1>
-    <p>
-      I am building something amazing with technology.
-      This is my own website, created using Termux.
-    </p>
-    <a class="button" href="mailto:hello@example.com">
-      Contact Me
-    </a>
+    <div class="container hero" id="home">
+      <div>
+        <div class="eyebrow">Ideas become reality</div>
+        <h1>Build beyond <span class="gradient">limits.</span></h1>
+        <p>
+          Welcome to NOVA — a digital space for bold ideas,
+          creative technology and the next generation of the web.
+          The future starts with what you create today.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="#projects">Explore projects ↗</a>
+          <a class="button secondary" href="#about">Discover NOVA</a>
+        </div>
+      </div>
+
+      <div class="orb-wrap" aria-hidden="true">
+        <div class="orb"></div>
+      </div>
+    </div>
+
+    <section id="projects">
+      <div class="container">
+        <div class="eyebrow">What we're exploring</div>
+        <h2 class="section-heading">Ideas in motion.</h2>
+        <p class="section-intro">
+          A foundation for your future projects. Replace these cards
+          with your own products, services or experiments.
+        </p>
+
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card-icon">✦</div>
+            <h3>Digital innovation</h3>
+            <p>Explore fresh ideas and turn ambitious concepts into useful digital experiences.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">⌘</div>
+            <h3>Smart technology</h3>
+            <p>Build practical tools, experiment with code and make technology work for people.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">◈</div>
+            <h3>Creative design</h3>
+            <p>Bring your vision to life with thoughtful layouts, distinctive visuals and detail.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="about-box reveal">
+          <div class="eyebrow">The vision</div>
+          <h2 class="section-heading">Made for what's next.</h2>
+          <p class="section-intro">
+            NOVA is your starting point for building something meaningful
+            online. This website is designed to grow with you — from a
+            simple landing page to a larger digital project.
+          </p>
+          <a class="button secondary" href="#contact">Let's connect ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact reveal">
+          <div class="eyebrow">Your next chapter</div>
+          <h2 class="section-heading">Have an idea?</h2>
+          <p>Let's turn your next big idea into something real.</p>
+          <a class="button primary"
+             href="mailto:YOUR_EMAIL@example.com?subject=Hello%20NOVA">
+            Get in touch ↗
+          </a>
+          <p><small>Replace the example email with your real contact address.</small></p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
-    &copy; 2026 My Website
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> NOVA. Built with curiosity.</span>
+      <a href="#home">Back to top ↑</a>
+    </div>
   </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    const items = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      items.forEach((item) => observer.observe(item));
+    } else {
+      items.forEach((item) => item.classList.add("visible"));
+    }
+  </script>
 </body>
 </html>
-
